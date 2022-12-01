@@ -1,0 +1,20 @@
+#Logging configuration
+logging:
+  level:
+    ROOT: INFO
+
+test-automation:
+  report-name: demo-suite
+  environment: local
+  cucumber:
+    glue-append: "com.nortal.test.demo.glue"
+  report:
+    rp:
+      api:
+        key: replace-me
+      endpoint: http://localhost:8080
+      launch: TEST_AUTOMATION
+      project: default_personal
+      batch:
+        size:
+          logs: 100
