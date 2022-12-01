@@ -1,0 +1,13 @@
+#Logging configuration
+logging:
+  level:
+    ROOT: INFO
+    cucumber: TRACE
+    com.nortal.test: INFO
+    org.springframework: INFO
+
+test-automation:
+  report-name: demo-suite
+  environment: local
+  cucumber:
+    glue-append: "com.nortal.test.demo.glue"

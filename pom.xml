@@ -14,13 +14,14 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <test.framework.version>0.1.27-SNAPSHOT</test.framework.version>
+        <test.framework.version>0.1.27</test.framework.version>
     </properties>
 
     <modules>
         <module>selenide-demo</module>
         <module>reportportal-demo</module>
         <module>feign-demo</module>
+        <module>restassured-demo</module>
     </modules>
 
     <dependencyManagement>
