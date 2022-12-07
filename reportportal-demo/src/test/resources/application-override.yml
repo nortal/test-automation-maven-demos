@@ -7,7 +7,7 @@ test-automation:
   report-name: demo-suite
   environment: local
   cucumber:
-    glue-append: "com.nortal.test.demo.glue"
+    glue-append: "com.nortal.test.reportportal.demo.glue"
   report:
     rp:
       api:

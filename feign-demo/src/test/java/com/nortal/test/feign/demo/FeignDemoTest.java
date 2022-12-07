@@ -20,11 +20,11 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.nortal.test.demo;
+package com.nortal.test.feign.demo;
 
 import com.nortal.test.TestRunner;
 import org.junit.platform.suite.api.SelectClasspathResource;
 
-@SelectClasspathResource("/behavior/ui")
-public class SelenideDemoTest extends TestRunner {
+@SelectClasspathResource("/behavior")
+public class FeignDemoTest extends TestRunner {
 }

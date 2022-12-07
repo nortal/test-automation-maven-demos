@@ -14,7 +14,7 @@ test-automation:
       parallel:
         enabled: true
         executor-count: 2
-    glue-append: "com.nortal.test.demo.glue"
+    glue-append: "com.nortal.test.selenide.demo.glue"
     filter:
       tags: "not @Skip"
   selenide:

@@ -1,4 +1,4 @@
-package com.nortal.test.demo;
+package com.nortal.test.reportportal.demo;
 
 import com.nortal.test.TestRunner;
 import org.junit.platform.suite.api.SelectClasspathResource;

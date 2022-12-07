@@ -20,12 +20,11 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.nortal.test.demo.configuration;
+package com.nortal.test.restassured.demo;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import com.nortal.test.TestRunner;
+import org.junit.platform.suite.api.SelectClasspathResource;
 
-@Configuration
-@EnableConfigurationProperties(TestDemoProperties.class)
-public class TestDemoConfiguration {
+@SelectClasspathResource("/behavior")
+public class RestassuredDemoTest extends TestRunner {
 }

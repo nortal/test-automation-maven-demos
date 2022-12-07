@@ -1,4 +1,4 @@
-package com.nortal.test.demo.glue;
+package com.nortal.test.reportportal.demo.glue;
 
 import io.cucumber.java.en.Step;
 import lombok.SneakyThrows;

@@ -1,4 +1,4 @@
-package com.nortal.test.demo.api;
+package com.nortal.test.feign.demo.api;
 
 import lombok.Data;
 import org.springframework.cloud.openfeign.FeignClient;
