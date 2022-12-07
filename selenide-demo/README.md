@@ -5,9 +5,9 @@
 
 `mvn clean test -Dtest=SelenideDemoTest`
 
-* Check the generated step screenshots
+* Check the generated step screenshots and report
 
-`build/allure-report/data/attachments/`
+`build/allure-report/data/index.html`
 
 ### Additional information:
 
