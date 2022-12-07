@@ -1,10 +1,10 @@
-package com.nortal.test.demo.mediator;
+package com.nortal.test.selenide.demo.mediator;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.nortal.test.core.services.CucumberScenarioProvider;
 import com.nortal.test.core.util.RetryingInvoker;
-import com.nortal.test.demo.configuration.TestDemoProperties;
+import com.nortal.test.selenide.demo.configuration.TestDemoProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;

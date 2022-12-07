@@ -20,11 +20,31 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.nortal.test.demo;
+package com.nortal.test.selenide.demo.configuration;
 
-import com.nortal.test.TestRunner;
-import org.junit.platform.suite.api.SelectClasspathResource;
+import lombok.Getter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
-@SelectClasspathResource("/behavior")
-public class FeignDemoTest extends TestRunner {
+@Getter
+@ConstructorBinding
+@ConfigurationProperties(prefix = "test-automation.custom")
+public class TestDemoProperties {
+	/**
+	 * Enable demo mode which highlights elements.
+	 */
+	private final boolean demoMode;
+	/**
+	 * Add sleep between Selenide actions.
+	 */
+	private final boolean lazyExecution;
+	private final Long lazyExecutionTime;
+	private final boolean screenshotsSteps;
+
+	public TestDemoProperties(boolean demoMode, boolean lazyExecution, Long lazyExecutionTime, boolean screenshotsSteps) {
+		this.demoMode = demoMode;
+		this.lazyExecution = lazyExecution;
+		this.lazyExecutionTime = lazyExecutionTime;
+		this.screenshotsSteps = screenshotsSteps;
+	}
 }
