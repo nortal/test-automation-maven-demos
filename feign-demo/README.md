@@ -7,7 +7,7 @@
 
 * Check the generated report
 
-`build/allure-report/data/attachments/*.html`
+`build/allure-report/data/index.html`
 
 ### Additional information:
 
