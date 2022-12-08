@@ -1,5 +1,6 @@
 package com.nortal.test.selenide.demo.mediator;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.nortal.test.core.services.CucumberScenarioProvider;
@@ -32,6 +33,10 @@ public class UiMediator {
                 .ifPresent(scr -> RetryingInvoker.retry(() -> Selenide.executeJavaScript(scr)));
 
     }
+/**
+ * This method is purely for demonstration purposes.
+ * We manipulate DOM to show dashed borders on element that we are interacting with during test runtime.
+ * */
 
     private String resolveDemoScript(String element, ElementType type) {
         final String styleAttribute = "setAttribute('style', 'border:4px dashed #ffdd99')";
@@ -61,21 +66,13 @@ public class UiMediator {
         scenarioProvider.getCucumberScenario().attach(data, "image/png", name);
     }
 
-    private void lazyExecution() {
-        Selenide.sleep(testDemoProperties.getLazyExecutionTime() * 1000);
-    }
-
-    public SelenideElement elementXpath(String xpath, boolean highlightOverride, Long hardWaitBefore) {
-        Selenide.sleep(hardWaitBefore);
-        if (testDemoProperties.isLazyExecution()) {
-            lazyExecution();
-        }
+    public SelenideElement elementXpath(String xpath, boolean highlightOverride) {
 
         if (testDemoProperties.isDemoMode() && highlightOverride) {
             demoMode(xpath, ElementType.XPATH);
         }
 
-        SelenideElement action = RetryingInvoker.retry(() -> Selenide.element(By.xpath(xpath)));
+        SelenideElement action = RetryingInvoker.retry(() -> Selenide.element(By.xpath(xpath)).shouldBe(Condition.visible));
         if (testDemoProperties.isScreenshotsSteps()) {
             takeScreenshot();
         }
