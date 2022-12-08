@@ -1,0 +1,39 @@
+#Logging configuration
+logging:
+  level:
+    ROOT: INFO
+    cucumber: TRACE
+    com.nortal.test: INFO
+    org.springframework: INFO
+
+test-automation:
+  report-name: demo-suite
+  environment: local
+  cucumber:
+    execution:
+      parallel:
+        enabled: false
+        executor-count: 2
+    glue-append: "com.nortal.test.demo.glue"
+    filter:
+      tags: "not @Skip"
+  report:
+    allure:
+      custom-logo: /logo/kotlin-horizontal.svg
+      custom-collapsed-logo: /logo/kotlin-icon.svg
+  integration:
+    jdbc:
+      driverClassName: "org.postgresql.Driver"
+      url: "jdbc:postgresql://localhost:5432/postgres"
+      username: "postgres"
+      password: "postgres"
+  containers:
+    testable-container:
+      jar-debug-enabled: false
+      debug-port: 9000
+      jacoco:
+        enabled: false
+      reuse-between-runs: false
+    contextContainers:
+      todo-db:
+        enabled: true
