@@ -18,13 +18,19 @@ public class BackendContainerSetup extends AbstractTestableContainerSetup {
     @NotNull
     @Override
     public String applicationName() {
-        return "todo-app-backend";
+        return "todo-backend";
     }
 
     @NotNull
     @Override
     public String maxMemory() {
         return "512m";
+    }
+
+    @NotNull
+    @Override
+    public int[] getTargetContainerExposedPorts() {
+        return new int[]{8080};
     }
 
     @NotNull

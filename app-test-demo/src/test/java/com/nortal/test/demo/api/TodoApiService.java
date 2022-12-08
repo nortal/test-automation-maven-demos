@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "todoApi", url = "http://localhost:8080", path = "/api/v1")
+@FeignClient(name = "todoApi", path = "/api/v1")
 public interface TodoApiService {
 
     @GetMapping("todo")

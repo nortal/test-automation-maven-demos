@@ -1,9 +1,11 @@
 package com.nortal.test.demo.glue;
 
+import com.codeborne.selenide.Selenide;
 import com.nortal.test.asserts.Assertion;
 import com.nortal.test.asserts.AssertionOperation;
 import com.nortal.test.asserts.Validation;
 import com.nortal.test.demo.dto.Todo;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Step;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -92,5 +94,11 @@ public class TodoApiStepDefinitions extends BaseStepDefs {
                         .expression("body")
                         .operation(AssertionOperation.NULL).build());
         validationService.validate(validationBuilder.build());
+    }
+
+    //TODO: Remove this method when fix for Selenide webdriver completed and Feign module will work properly together with Selenide module
+    @Before
+    public void openBrowser() {
+        Selenide.open("http://localhost:3000/");
     }
 }

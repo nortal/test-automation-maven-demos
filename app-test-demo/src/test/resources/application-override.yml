@@ -24,11 +24,12 @@ test-automation:
   integration:
     jdbc:
       driverClassName: "org.postgresql.Driver"
-      url: "jdbc:postgresql://localhost:5432/postgres"
+      url:
       username: "postgres"
       password: "postgres"
   containers:
     testable-container:
+      internal-http-port: 8080
       jar-debug-enabled: false
       debug-port: 9000
       jacoco:
@@ -37,3 +38,20 @@ test-automation:
     contextContainers:
       todo-db:
         enabled: true
+      todo-frontend:
+        enabled: true
+  selenide:
+    browser: CHROME # Options: CHROME, EDGE, FIREFOX, OPERA, SAFARI (works only with Mac)
+    browser-size: "1920x1080"
+    driver-manager-enabled: true
+    headless: false
+    timeout: 40000
+    page-load-timeout: 30000
+    proxy-enabled: true
+    proxy-host: 127.0.0.1
+    file-download: proxy
+  custom:
+    demo-mode: true
+    lazy-execution: false
+    lazy-execution-time: 1
+    screenshots-steps: true

@@ -17,11 +17,9 @@ public class PostgresContextualContainer extends AbstractAuxiliaryContainer<Post
     private final TestableContainerJacocoProperties jacocoProperties;
 
     public static class TestPostgreSQLContainer extends PostgreSQLContainer<TestPostgreSQLContainer> {
-
         public TestPostgreSQLContainer() {
             super(POSTGRES_IMAGE);
         }
-
     }
 
     @NotNull
