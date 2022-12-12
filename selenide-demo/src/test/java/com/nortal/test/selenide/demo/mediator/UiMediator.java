@@ -72,7 +72,7 @@ public class UiMediator {
             demoMode(xpath, ElementType.XPATH);
         }
 
-        SelenideElement action = RetryingInvoker.retry(() -> Selenide.element(By.xpath(xpath)).shouldBe(Condition.visible));
+        SelenideElement action = RetryingInvoker.retry(() -> Selenide.element(By.xpath(xpath)));
         if (testDemoProperties.isScreenshotsSteps()) {
             takeScreenshot();
         }
