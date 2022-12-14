@@ -34,17 +34,10 @@ public class TestDemoProperties {
 	 * Enable demo mode which highlights elements.
 	 */
 	private final boolean demoMode;
-	/**
-	 * Add sleep between Selenide actions.
-	 */
-	private final boolean lazyExecution;
-	private final Long lazyExecutionTime;
 	private final boolean screenshotsSteps;
 
-	public TestDemoProperties(boolean demoMode, boolean lazyExecution, Long lazyExecutionTime, boolean screenshotsSteps) {
+	public TestDemoProperties(boolean demoMode, boolean screenshotsSteps) {
 		this.demoMode = demoMode;
-		this.lazyExecution = lazyExecution;
-		this.lazyExecutionTime = lazyExecutionTime;
 		this.screenshotsSteps = screenshotsSteps;
 	}
 }

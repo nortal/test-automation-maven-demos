@@ -40,20 +40,18 @@ public class TestPageStepDefs {
 	@Given("Test Pages For Automating is open in browser")
 	public void openPageInBrowser() {
 		Selenide.open("https://testpages.herokuapp.com/");
-		uiMediator.elementXpath(PAGE_HEADER_XPATH, true, 0L).shouldBe(Condition.visible);
+		uiMediator.elementXpath(PAGE_HEADER_XPATH, true).shouldBe(Condition.visible);
 	}
 
 	@SneakyThrows
 	@When("User clicks on {} link")
 	public void clickOnLink(String linkName) {
-		Thread.sleep(500L);
-		uiMediator.elementXpath(getLinkByName(linkName), true, 0L).click();
+		uiMediator.elementXpath(getLinkByName(linkName), true).shouldBe(Condition.visible).click();
 	}
 
 	@Then("Several paragraphs are visible")
 	public void validateParagraphPresence(DataTable dataTable) {
-		dataTable.asList().forEach(entry ->
-				uiMediator.elementXpath(getParagraphByTextXpath(entry), true, 0L).shouldBe(Condition.visible));
+		dataTable.asList().forEach(entry -> uiMediator.elementXpath(getParagraphByTextXpath(entry), true).shouldBe(Condition.visible));
 	}
 
 	private String getParagraphByTextXpath(String text) {
