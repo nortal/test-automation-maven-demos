@@ -24,8 +24,13 @@ package com.nortal.test.restassured.demo.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nortal.test.restassured.RestAssuredConfiguration;
+import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.specification.RequestSpecification;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class TestDemoConfiguration {
@@ -33,4 +38,11 @@ public class TestDemoConfiguration {
     public ObjectMapper objectMapper(RestAssuredConfiguration.ObjectMapperProvider objectMapperProvider) {
         return objectMapperProvider.getObjectMapper();
     }
+
+    @Bean
+    @Scope("prototype")
+    public RequestSpecification restAssuredClient() {
+        return RestAssured.given().filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+    }
+
 }
