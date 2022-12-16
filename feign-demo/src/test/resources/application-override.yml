@@ -5,6 +5,7 @@ logging:
     cucumber: TRACE
     com.nortal.test: INFO
     org.springframework: INFO
+    com.nortal.test.feign.demo.api: DEBUG
 
 test-automation:
   report-name: demo-suite
