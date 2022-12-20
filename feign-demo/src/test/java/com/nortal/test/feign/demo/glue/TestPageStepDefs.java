@@ -29,7 +29,6 @@ import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -44,12 +43,8 @@ public class TestPageStepDefs {
 
     @When("user requests cat fact")
     public void getCatFact() {
-        try {
-            final ResponseEntity<CatApi.Fact> responseEntity = catApi.getFact();
-            scenarioContext.putStepData(RESPONSE, responseEntity);
-        } catch (HttpClientErrorException ex) {
-            scenarioContext.putStepData(RESPONSE, ex);
-        }
+        ResponseEntity<CatApi.Fact> responseEntity = catApi.getFact();
+        scenarioContext.putStepData(RESPONSE, responseEntity);
     }
 
     @Then("user should get response with cat fact")
@@ -63,12 +58,8 @@ public class TestPageStepDefs {
 
     @When("user requests a list of cat facts")
     public void getCatFacts() {
-        try {
-            final ResponseEntity<CatApi.FactsList> responseEntity = catApi.getFacts();
-            scenarioContext.putStepData(RESPONSE, responseEntity);
-        } catch (HttpClientErrorException ex) {
-            scenarioContext.putStepData(RESPONSE, ex);
-        }
+        ResponseEntity<CatApi.FactsList> responseEntity = catApi.getFacts();
+        scenarioContext.putStepData(RESPONSE, responseEntity);
     }
 
     @Then("user should get response with a list of cat facts")
@@ -88,12 +79,8 @@ public class TestPageStepDefs {
 
     @When("user requests a list of cat breeds")
     public void getBreeds() {
-        try {
-            final ResponseEntity<CatApi.BreedsList> responseEntity = catApi.getBreeds();
-            scenarioContext.putStepData(RESPONSE, responseEntity);
-        } catch (HttpClientErrorException ex) {
-            scenarioContext.putStepData(RESPONSE, ex);
-        }
+        ResponseEntity<CatApi.BreedsList> responseEntity = catApi.getBreeds();
+        scenarioContext.putStepData(RESPONSE, responseEntity);
     }
 
     @Then("user should get response with a list of cat breeds")
