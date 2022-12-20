@@ -22,18 +22,101 @@
  */
 package com.nortal.test.restassured.demo.glue;
 
-import io.cucumber.java.en.Given;
+import com.nortal.test.core.services.ScenarioContext;
+import com.nortal.test.restassured.demo.dto.BreedsList;
+import com.nortal.test.restassured.demo.dto.Fact;
+import com.nortal.test.restassured.demo.dto.FactsList;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@RequiredArgsConstructor
 public class TestPageStepDefs {
+    private static final String BASE_URI = "https://catfact.ninja";
+    private static final String FACT_ENDPOINT = "/fact";
+    private static final String FACTS_LIST_ENDPOINT = "/facts";
+    private static final String BREEDS_LIST_ENDPOINT = "/breeds";
+    private static final String RESPONSE = "response";
+    private static final int CURRENT_PAGE = 1;
+    private final ScenarioContext scenarioContext;
 
-    @Given("Api is called")
-    public void openPageInBrowser() {
-        RestAssured.given()
-                .get("https://catfact.ninja/fact")
-                .then()
-                .statusCode(200);
+    @When("user requests cat fact")
+    public void getCatFact() {
+        sendGetRequest(FACT_ENDPOINT);
     }
 
+    @Then("user should get response with cat fact")
+    public void assertCatFact() {
+        Response response = scenarioContext.getStepData(RESPONSE);
+        assertResponse(response);
 
+        Fact fact = response.getBody().as(Fact.class);
+        assertNotNull(fact.getFact(), "Fact should not be null");
+        assertNotNull(fact.getLength(), "Length should not be null");
+    }
+
+    @When("user requests a list of cat facts")
+    public void getCatFacts() {
+        sendGetRequest(FACTS_LIST_ENDPOINT);
+    }
+
+    @Then("user should get response with a list of cat facts")
+    public void assertCatFacts() {
+        Response response = scenarioContext.getStepData(RESPONSE);
+        assertResponse(response);
+
+        FactsList factsList = response.getBody().as(FactsList.class);
+        assertEquals(CURRENT_PAGE, factsList.getCurrent_page(), "Unexpected current page");
+        assertNotNull(factsList.getLast_page(), "Last page should not be null");
+
+        assertTrue(factsList.getData().size() >= 1, "Unexpected number of facts");
+        factsList.getData().forEach(fact -> {
+            assertNotNull(fact.getFact(), "Fact should not be null");
+            assertNotNull(fact.getLength(), "Length should not be null");
+        });
+    }
+
+    @When("user requests a list of cat breeds")
+    public void getBreeds() {
+        sendGetRequest(BREEDS_LIST_ENDPOINT);
+    }
+
+    @Then("user should get response with a list of cat breeds")
+    public void assertBreeds() {
+        Response response = scenarioContext.getStepData(RESPONSE);
+        assertResponse(response);
+
+        BreedsList breedsList = response.getBody().as(BreedsList.class);
+        assertEquals(CURRENT_PAGE, breedsList.getCurrent_page(), "Unexpected current page");
+        assertNotNull(breedsList.getLast_page(), "Last page should not be null");
+
+        assertTrue(breedsList.getData().size() >= 1, "Unexpected number of breeds");
+        breedsList.getData().forEach(breed -> {
+            assertNotNull(breed.getBreed(), "Breed should not be null");
+            assertNotNull(breed.getCountry(), "Country should not be null");
+            assertNotNull(breed.getOrigin(), "Origin should not be null");
+            assertNotNull(breed.getCoat(), "Coat should not be null");
+            assertNotNull(breed.getPattern(), "Pattern should not be null");
+        });
+    }
+
+    private void sendGetRequest(String endpoint) {
+        RestAssured.baseURI = BASE_URI;
+        RequestSpecification request = RestAssured.given();
+        Response response = request.get(endpoint);
+        scenarioContext.putStepData(RESPONSE, response);
+    }
+
+    private void assertResponse(Response response) {
+        assertNotNull(response, "Response should not be null");
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode(), "Unexpected HTTP status code");
+    }
 }
