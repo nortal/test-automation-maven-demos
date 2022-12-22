@@ -8,3 +8,13 @@ Feature: Linking content together is supported
     Then Several paragraphs are visible
      | A paragraph of text       |
      | Another paragraph of text |
+
+    # GUI User Interactions throws errors in browser console,
+    # therefore its a good example of browser console logging
+  @Gui
+  Scenario: Framework supports Browser console errors logging
+    Given Test Pages For Automating is open in browser
+    When User clicks on GUI User Interactions link
+    Then Several paragraphs are visible
+    |Drag me  |
+    |Drop here|

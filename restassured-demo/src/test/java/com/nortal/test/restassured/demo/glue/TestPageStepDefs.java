@@ -30,11 +30,10 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPageStepDefs {
     private static final String BASE_URI = "https://catfact.ninja";
@@ -43,6 +42,8 @@ public class TestPageStepDefs {
     private static final String BREEDS_LIST_ENDPOINT = "/breeds";
     private static final int CURRENT_PAGE = 1;
     private Response response;
+    @Autowired
+    private RequestSpecification requestSpecification;
 
     @When("user requests cat fact")
     public void getCatFact() {
