@@ -26,16 +26,52 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.nortal.test.selenide.demo.mediator.UiMediator;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.SneakyThrows;
+import org.openqa.selenium.logging.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Date;
+import java.util.logging.Level;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static java.lang.invoke.MethodHandles.lookup;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public class TestPageStepDefs {
 	private static final String PAGE_HEADER_XPATH = "//h1[normalize-space()='Test Pages For Automating']";
 	@Autowired
 	private UiMediator uiMediator;
+	private static final Logger log = getLogger(lookup().lookupClass());
+	@Before
+			void setup() {
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		LoggingPreferences logPrefs = new LoggingPreferences();
+		logPrefs.enable(LogType.BROWSER, Level.ALL);
+		logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+		capabilities.setCapability("goog:loggingPrefs", logPrefs);
+	}
+
+	@After
+	void finish() {
+		Logs logs = getWebDriver().manage().logs();
+		printLog(logs.get(LogType.BROWSER));
+	}
+
+	void printLog(LogEntries entries) {
+		log.info("{} log entries found", entries.getAll().size());
+		for (LogEntry entry : entries) {
+			log.info("{} {} {}",
+					new Date(entry.getTimestamp()), entry.getLevel(), entry.getMessage()
+			);
+		}
+	}
 
 	@Given("Test Pages For Automating is open in browser")
 	public void openPageInBrowser() {

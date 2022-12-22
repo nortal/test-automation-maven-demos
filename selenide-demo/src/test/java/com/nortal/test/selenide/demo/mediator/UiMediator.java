@@ -1,6 +1,5 @@
 package com.nortal.test.selenide.demo.mediator;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.nortal.test.core.services.CucumberScenarioProvider;

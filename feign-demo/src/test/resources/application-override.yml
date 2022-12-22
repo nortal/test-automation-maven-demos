@@ -7,6 +7,12 @@ logging:
     org.springframework: INFO
     com.nortal.test.feign.demo.api: DEBUG
 
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+
 test-automation:
   report-name: demo-suite
   environment: local
