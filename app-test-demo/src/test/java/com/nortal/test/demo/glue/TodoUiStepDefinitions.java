@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class TodoUiStepDefinitions extends BaseUiStepDefs {
-    public static final String DESCRIPTION_VALUE = "test";
+    private static final String DESCRIPTION_VALUE = "test";
     private final MainPageObj mainPageObj;
     private final AddTodoPageObj addTodoPageObj;
     private int initialTodosCount;
