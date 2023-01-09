@@ -4,16 +4,22 @@ import com.codeborne.selenide.Selenide;
 import com.nortal.test.asserts.Assertion;
 import com.nortal.test.asserts.AssertionOperation;
 import com.nortal.test.asserts.Validation;
+import com.nortal.test.demo.api.TodoApiService;
 import com.nortal.test.demo.dto.Todo;
+import com.nortal.test.demo.glue.provider.TodoProvider;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Step;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public class TodoApiStepDefinitions extends BaseStepDefs {
+@RequiredArgsConstructor
+public class TodoApiStepDefinitions extends BaseApiStepDefs {
     private static final Long TODO_ID = 1L;
+    private final TodoApiService todoApiService;
+    private final TodoProvider todoProvider;
     private ResponseEntity<List<Todo>> responseTodoList;
     private ResponseEntity<Todo> responseTodo;
     private ResponseEntity<Object> responseEmpty;
@@ -96,7 +102,7 @@ public class TodoApiStepDefinitions extends BaseStepDefs {
         validationService.validate(validationBuilder.build());
     }
 
-    //TODO: Remove this method when fix for Selenide webdriver completed and Feign module will work properly together with Selenide module
+    //TODO: Remove this method when fix for Selenide Webdriver completed
     @Before
     public void openBrowser() {
         Selenide.open("http://localhost:3000/");

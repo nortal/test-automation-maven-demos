@@ -50,8 +50,3 @@ test-automation:
     proxy-enabled: true
     proxy-host: 127.0.0.1
     file-download: proxy
-  custom:
-    demo-mode: true
-    lazy-execution: false
-    lazy-execution-time: 1
-    screenshots-steps: true

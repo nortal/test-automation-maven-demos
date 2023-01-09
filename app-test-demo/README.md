@@ -8,7 +8,7 @@ Demo project executes tests against Todo application that consists of frontend, 
 * Core - main functionality that ties all other modules.
 * Containers - [TestContainers](https://www.testcontainers.org/) based module that provides a capability to test against a docker container.
 * Jdbc - JDBC support to execute database queries.
-* Feign - [OpenFeign](https://github.com/OpenFeign/feign/) + [OkHttp](https://square.github.io/okhttp/) based client. Makes calls to backend API.
+* Feign - [OpenFeign](https://github.com/OpenFeign/feign/) + [OkHttp](https://square.github.io/okhttp/) based client for backend API testing.
 * Assert - provides helper services to create data assertions and has visual representation in reports. 
 * Allure - report generation module. Based on [Allure](https://qameta.io/allure-report/).
 * Selenide - UI testing capability module. Based on [Selenide](https://selenide.org/).
@@ -30,4 +30,4 @@ Docker should start pulling images from Docker Hub and run containers of Todo ap
 When the tests are finished running, the Docker containers will be stopped.
 
 * Generated report is accessible from: `build/allure-report/index.html`
-* Demo project properties are set in `application-override.yml` file
+* Demo project properties are set in `application-override.yml`

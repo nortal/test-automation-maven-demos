@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class PostresJdbcUrlProvider implements JdbcUrlProvider {
+public class PostgresJdbcUrlProvider implements JdbcUrlProvider {
     private final PostgresContextualContainer postgresContextualContainer;
 
     @NotNull

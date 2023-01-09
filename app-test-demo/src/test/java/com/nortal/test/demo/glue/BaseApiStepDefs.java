@@ -3,19 +3,13 @@ package com.nortal.test.demo.glue;
 import com.nortal.test.asserts.Assertion;
 import com.nortal.test.asserts.AssertionOperation;
 import com.nortal.test.asserts.ValidationService;
-import com.nortal.test.demo.api.TodoApiService;
 import com.nortal.test.demo.database.DatabaseService;
-import com.nortal.test.demo.glue.provider.TodoProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
-public class BaseStepDefs {
-    @Autowired
-    protected TodoApiService todoApiService;
+public class BaseApiStepDefs {
     @Autowired
     protected DatabaseService databaseService;
-    @Autowired
-    protected TodoProvider todoProvider;
     @Autowired
     protected ValidationService validationService;
 
