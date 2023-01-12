@@ -22,11 +22,18 @@
  */
 package com.nortal.test.feign.demo.configuration;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import feign.Logger;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableFeignClients(basePackages = {"com.nortal.test.feign.demo.api"})
 public class TestDemoConfiguration {
+
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+
 }

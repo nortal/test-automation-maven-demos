@@ -5,6 +5,14 @@ logging:
     cucumber: TRACE
     com.nortal.test: INFO
     org.springframework: INFO
+    com.nortal.test.feign.demo.api: DEBUG
+
+#Required for global logging configuration, logging levels are: FULL, HEADERS, BASIC, NONE
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
 
 test-automation:
   report-name: demo-suite
